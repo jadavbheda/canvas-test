@@ -1,0 +1,82 @@
+<html>
+    <head>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+        
+        <div id="app">
+            <h1> {{ product }} </h1>
+            
+            <p v-show="show"> SHOW True </p>
+            <p v-if="show"> IF True </p>
+
+            <ul>
+                <li v-for="element in list"> {{ element }} </li>
+            </ul>
+
+            <button v-on:click="addToCart"> Counter </button>
+            <p> Cart - {{ cart }}</p>
+            
+            <div>
+                <div>
+                    <image v-bind:src="link"> </image>
+                </div>    
+
+                <div v-for="variant in variants" 
+                    :key="variant.id"
+                    class="color-box"
+                    :style="{ backgroundColor: variant.name }"
+                    @mouseover="updateCart(variant.image)"> 
+
+                </div>
+            </div>
+
+        </div>
+            
+        <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                product: 'Socks ',
+                link: 'https://uce33673063e33a5956b7996eb3e.previews.dropboxusercontent.com/p/thumb/AAqABWw7TYzxoapoZ8dIrTJiPYriwBqMS0bF4XSgzFTbYcq14jfhXcbLSLBs4zbhdj4JgPMB612dKRqiKIqNBWfno-cVpJGpNExK6Oo_FDC67cIpletdgBXAskQ9Tz_AjeKN4SqqkEUlwPvGWNabBOuntrlQA2QTGyXUXQ3_7DN1A0y-n8bUg6YkGboNCqgMB4UNSfb36vikCPRXHiHM0s1sQBMfUYWVieDa5yP8HxFApndnequf2wt1l2Yv73uqp_7E80xDtnut3rJ9m4W08RT1T_c-_M1C535WsO3mLVTcffqOfUj-vLPYMbDQ4C-oZoGYwYbz3oC22QQyTV245G89/p.png?size=178x178&amp;size_mode=1',
+                show: true,
+                list: ["green", "red", "blue"],
+                variants: [{
+                                id: 1,
+                                name: "red",
+                                image: 'https://uc566e37904ae03b056400ba35d6.previews.dropboxusercontent.com/p/thumb/AAraLMYcG_kIANaoQGCW6y4V5GoYpcHe-lhccsVAt9Eazg8zjFtiaQezHxL1buHZ4jg8zC3DM7_dggFmQZlpamdyu9sW3wsyUJPDqS4msDT248tNcqm7wP8CLbX-nLL9ln84HDY2TPJHkpOGzEX_3fmSK8LsuqWH_jyhrLaYEHYYMkOYYpfWK9pehzhVbWDdEp3ZdYif1al-4ENd_uFlUzBgV4lX-oVMykdlycgPhCuvz5QXjxkGKKR5qrSnEjwO44RTi1-8yuDX-NO0o1pvZjpe9CxKVGOimxhnlXEPOMjH9uoxHuxLO758mHIjU7v3LXzKSTk0-ucCbTaHGchmUlbI/p.png?size=178x178&amp;size_mode=1',
+                            },
+                            {
+                                id: 2,
+                                name: "green",
+                                image: 'https://uce33673063e33a5956b7996eb3e.previews.dropboxusercontent.com/p/thumb/AAqABWw7TYzxoapoZ8dIrTJiPYriwBqMS0bF4XSgzFTbYcq14jfhXcbLSLBs4zbhdj4JgPMB612dKRqiKIqNBWfno-cVpJGpNExK6Oo_FDC67cIpletdgBXAskQ9Tz_AjeKN4SqqkEUlwPvGWNabBOuntrlQA2QTGyXUXQ3_7DN1A0y-n8bUg6YkGboNCqgMB4UNSfb36vikCPRXHiHM0s1sQBMfUYWVieDa5yP8HxFApndnequf2wt1l2Yv73uqp_7E80xDtnut3rJ9m4W08RT1T_c-_M1C535WsO3mLVTcffqOfUj-vLPYMbDQ4C-oZoGYwYbz3oC22QQyTV245G89/p.png?size=178x178&amp;size_mode=1',
+                            },
+                            {
+                                id: 3,
+                                name: "blue",
+                                image: 'https://vuejs.org/images/vueschool.png'
+                            }
+                ],
+                cart: 0
+            },
+
+            methods: {
+                addToCart() {
+                    this.cart += 1
+                },
+                updateCart(variantImage) {
+                    this.link = variantImage;
+                }
+            }
+        });
+
+        </script>
+        <style>
+        .color-box {
+            width: 40px;
+            height: 40px;
+            margin-top: 5px;
+        }
+        </style>
+    </body>
+</html>
